@@ -1,3 +1,3 @@
 {
-  "!(_app_prisma)/**/*.ts?(x)": ["eslint --fix", "prettier --write"]
+  "*.ts?(x)": ["eslint --fix", "prettier --write"]
 }
