@@ -1,0 +1,12 @@
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+  </style>
+  <rect width="400" height="120" rx="20" fill="#0F172A"/>
+  <text x="40" y="75" font-size="42" font-family="Orbitron, sans-serif" font-weight="700">
+    <tspan fill="#7f22fe">Finance</tspan><tspan fill="#ffffff">AI</tspan>
+  </text>
+  <path d="M100 35 C130 15, 190 15, 220 35" stroke="#7f22fe" stroke-width="4" fill="none"/>
+  <circle cx="100" cy="35" r="5" fill="#7f22fe"/>
+  <circle cx="220" cy="35" r="5" fill="#7f22fe"/>
+</svg>
