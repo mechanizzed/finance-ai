@@ -16,6 +16,8 @@ datasource db {
 
 model Transaction {
   id            String                   @id @default(uuid())
+  userId        String
+  user          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
   name          String
   type          TransactionType
   amount        Decimal                  @db.Decimal(10, 2)
@@ -64,7 +66,7 @@ enum TransactionPaymentMethod {
 }
 
 model User {
-  id            String    @id
+  id            String        @id
   name          String
   email         String
   emailVerified Boolean
@@ -73,6 +75,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  Transaction   Transaction[]
 
   @@unique([email])
   @@map("user")
