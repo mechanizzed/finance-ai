@@ -1,3 +1,6 @@
 {
-  "*.ts?(x)": ["eslint --fix", "prettier --write"]
+  "*.ts?(x)": [
+    "eslint --fix --ignore-pattern '_app_prisma/**'",
+    "prettier --write"
+  ]
 }

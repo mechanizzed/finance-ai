@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-function-type */
-/* eslint-disable @typescript-eslint/no-unnecessary-type-constraint */
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 /**
  * Client
  **/
@@ -546,7 +540,7 @@ export namespace Prisma {
         ? False
         : T extends Uint8Array
           ? False
-          : T extends bigint
+          : T extends BigInt
             ? False
             : T extends object
               ? True
@@ -3014,6 +3008,7 @@ export namespace Prisma {
   export type TransactionCategoryMinAggregateOutputType = {
     id: string | null;
     name: string | null;
+    icon: string | null;
     createdAt: Date | null;
     updatedAt: Date | null;
   };
@@ -3021,6 +3016,7 @@ export namespace Prisma {
   export type TransactionCategoryMaxAggregateOutputType = {
     id: string | null;
     name: string | null;
+    icon: string | null;
     createdAt: Date | null;
     updatedAt: Date | null;
   };
@@ -3028,6 +3024,7 @@ export namespace Prisma {
   export type TransactionCategoryCountAggregateOutputType = {
     id: number;
     name: number;
+    icon: number;
     createdAt: number;
     updatedAt: number;
     _all: number;
@@ -3036,6 +3033,7 @@ export namespace Prisma {
   export type TransactionCategoryMinAggregateInputType = {
     id?: true;
     name?: true;
+    icon?: true;
     createdAt?: true;
     updatedAt?: true;
   };
@@ -3043,6 +3041,7 @@ export namespace Prisma {
   export type TransactionCategoryMaxAggregateInputType = {
     id?: true;
     name?: true;
+    icon?: true;
     createdAt?: true;
     updatedAt?: true;
   };
@@ -3050,6 +3049,7 @@ export namespace Prisma {
   export type TransactionCategoryCountAggregateInputType = {
     id?: true;
     name?: true;
+    icon?: true;
     createdAt?: true;
     updatedAt?: true;
     _all?: true;
@@ -3141,6 +3141,7 @@ export namespace Prisma {
   export type TransactionCategoryGroupByOutputType = {
     id: string;
     name: string;
+    icon: string;
     createdAt: Date;
     updatedAt: Date;
     _count: TransactionCategoryCountAggregateOutputType | null;
@@ -3169,6 +3170,7 @@ export namespace Prisma {
     {
       id?: boolean;
       name?: boolean;
+      icon?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
       Transaction?: boolean | TransactionCategory$TransactionArgs<ExtArgs>;
@@ -3183,6 +3185,7 @@ export namespace Prisma {
     {
       id?: boolean;
       name?: boolean;
+      icon?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
     },
@@ -3195,6 +3198,7 @@ export namespace Prisma {
     {
       id?: boolean;
       name?: boolean;
+      icon?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
     },
@@ -3204,6 +3208,7 @@ export namespace Prisma {
   export type TransactionCategorySelectScalar = {
     id?: boolean;
     name?: boolean;
+    icon?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   };
@@ -3211,7 +3216,7 @@ export namespace Prisma {
   export type TransactionCategoryOmit<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetOmit<
-    "id" | "name" | "createdAt" | "updatedAt",
+    "id" | "name" | "icon" | "createdAt" | "updatedAt",
     ExtArgs["result"]["transactionCategory"]
   >;
   export type TransactionCategoryInclude<
@@ -3238,6 +3243,7 @@ export namespace Prisma {
       {
         id: string;
         name: string;
+        icon: string;
         createdAt: Date;
         updatedAt: Date;
       },
@@ -3852,6 +3858,7 @@ export namespace Prisma {
   interface TransactionCategoryFieldRefs {
     readonly id: FieldRef<"TransactionCategory", "String">;
     readonly name: FieldRef<"TransactionCategory", "String">;
+    readonly icon: FieldRef<"TransactionCategory", "String">;
     readonly createdAt: FieldRef<"TransactionCategory", "DateTime">;
     readonly updatedAt: FieldRef<"TransactionCategory", "DateTime">;
   }
@@ -9808,6 +9815,7 @@ export namespace Prisma {
   export const TransactionCategoryScalarFieldEnum: {
     id: "id";
     name: "name";
+    icon: "icon";
     createdAt: "createdAt";
     updatedAt: "updatedAt";
   };
@@ -10125,6 +10133,7 @@ export namespace Prisma {
     NOT?: TransactionCategoryWhereInput | TransactionCategoryWhereInput[];
     id?: StringFilter<"TransactionCategory"> | string;
     name?: StringFilter<"TransactionCategory"> | string;
+    icon?: StringFilter<"TransactionCategory"> | string;
     createdAt?: DateTimeFilter<"TransactionCategory"> | Date | string;
     updatedAt?: DateTimeFilter<"TransactionCategory"> | Date | string;
     Transaction?: TransactionListRelationFilter;
@@ -10133,6 +10142,7 @@ export namespace Prisma {
   export type TransactionCategoryOrderByWithRelationInput = {
     id?: SortOrder;
     name?: SortOrder;
+    icon?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
     Transaction?: TransactionOrderByRelationAggregateInput;
@@ -10145,6 +10155,7 @@ export namespace Prisma {
       OR?: TransactionCategoryWhereInput[];
       NOT?: TransactionCategoryWhereInput | TransactionCategoryWhereInput[];
       name?: StringFilter<"TransactionCategory"> | string;
+      icon?: StringFilter<"TransactionCategory"> | string;
       createdAt?: DateTimeFilter<"TransactionCategory"> | Date | string;
       updatedAt?: DateTimeFilter<"TransactionCategory"> | Date | string;
       Transaction?: TransactionListRelationFilter;
@@ -10155,6 +10166,7 @@ export namespace Prisma {
   export type TransactionCategoryOrderByWithAggregationInput = {
     id?: SortOrder;
     name?: SortOrder;
+    icon?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
     _count?: TransactionCategoryCountOrderByAggregateInput;
@@ -10172,6 +10184,7 @@ export namespace Prisma {
       | TransactionCategoryScalarWhereWithAggregatesInput[];
     id?: StringWithAggregatesFilter<"TransactionCategory"> | string;
     name?: StringWithAggregatesFilter<"TransactionCategory"> | string;
+    icon?: StringWithAggregatesFilter<"TransactionCategory"> | string;
     createdAt?:
       | DateTimeWithAggregatesFilter<"TransactionCategory">
       | Date
@@ -10666,6 +10679,7 @@ export namespace Prisma {
   export type TransactionCategoryCreateInput = {
     id?: string;
     name: string;
+    icon: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     Transaction?: TransactionCreateNestedManyWithoutCategoryInput;
@@ -10674,6 +10688,7 @@ export namespace Prisma {
   export type TransactionCategoryUncheckedCreateInput = {
     id?: string;
     name: string;
+    icon: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     Transaction?: TransactionUncheckedCreateNestedManyWithoutCategoryInput;
@@ -10682,6 +10697,7 @@ export namespace Prisma {
   export type TransactionCategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     Transaction?: TransactionUpdateManyWithoutCategoryNestedInput;
@@ -10690,6 +10706,7 @@ export namespace Prisma {
   export type TransactionCategoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     Transaction?: TransactionUncheckedUpdateManyWithoutCategoryNestedInput;
@@ -10698,6 +10715,7 @@ export namespace Prisma {
   export type TransactionCategoryCreateManyInput = {
     id?: string;
     name: string;
+    icon: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
   };
@@ -10705,6 +10723,7 @@ export namespace Prisma {
   export type TransactionCategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
@@ -10712,6 +10731,7 @@ export namespace Prisma {
   export type TransactionCategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
@@ -11415,6 +11435,7 @@ export namespace Prisma {
   export type TransactionCategoryCountOrderByAggregateInput = {
     id?: SortOrder;
     name?: SortOrder;
+    icon?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
   };
@@ -11422,6 +11443,7 @@ export namespace Prisma {
   export type TransactionCategoryMaxOrderByAggregateInput = {
     id?: SortOrder;
     name?: SortOrder;
+    icon?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
   };
@@ -11429,6 +11451,7 @@ export namespace Prisma {
   export type TransactionCategoryMinOrderByAggregateInput = {
     id?: SortOrder;
     name?: SortOrder;
+    icon?: SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
   };
@@ -12530,6 +12553,7 @@ export namespace Prisma {
   export type TransactionCategoryCreateWithoutTransactionInput = {
     id?: string;
     name: string;
+    icon: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
   };
@@ -12537,6 +12561,7 @@ export namespace Prisma {
   export type TransactionCategoryUncheckedCreateWithoutTransactionInput = {
     id?: string;
     name: string;
+    icon: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
   };
@@ -12616,6 +12641,7 @@ export namespace Prisma {
   export type TransactionCategoryUpdateWithoutTransactionInput = {
     id?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
@@ -12623,6 +12649,7 @@ export namespace Prisma {
   export type TransactionCategoryUncheckedUpdateWithoutTransactionInput = {
     id?: StringFieldUpdateOperationsInput | string;
     name?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };

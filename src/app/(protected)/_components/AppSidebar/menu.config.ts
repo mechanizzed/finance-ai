@@ -9,7 +9,7 @@ export const menuItems = [
 
   {
     title: "Transações",
-    url: "#",
+    url: "/transactions",
     icon: DollarSign,
   },
   {

@@ -23,7 +23,7 @@ export async function Header() {
           width={110}
           height={21}
           alt="FinanceAI"
-          className="visible lg:hidden xl:hidden 2xl:hidden"
+          className="visible md:hidden lg:hidden xl:hidden 2xl:hidden"
         />
 
         <AvatarSignOut user={session.user} />

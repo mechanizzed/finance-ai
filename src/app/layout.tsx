@@ -23,12 +23,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark">
       <body className={`${getRaleway.variable} antialiased`}>
-        <Suspense fallback={<Loading />}>
-          <main>
-            {children}
-            <Toaster />
-          </main>
-        </Suspense>
+        <main>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <Toaster />
+        </main>
       </body>
     </html>
   );

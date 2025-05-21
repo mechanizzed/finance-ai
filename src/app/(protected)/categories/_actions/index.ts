@@ -35,6 +35,6 @@ export const putUpdateCategory = async (
 ) => {
   await db.transactionCategory.update({
     where: { id },
-    data: { name: values.name },
+    data: { name: values.name, icon: values.icon },
   });
 };

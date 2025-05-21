@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +17,14 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>FinanceAi</SidebarGroupLabel>
+          <SidebarGroupLabel className="mb-3">
+            <Image
+              src="/logo-finance-white.png"
+              width={110}
+              height={21}
+              alt="FinanceAi"
+            />
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (

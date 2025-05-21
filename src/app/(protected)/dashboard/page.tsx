@@ -54,9 +54,10 @@ export default function Dashboard() {
                   </div>
                   <h2 className="text-4xl font-bold">R$ 2.700,89</h2>
                 </div>
-                <Link href="/transaction">
-                  <Button size="sm">Adicionar transação</Button>
-                </Link>
+
+                <Button size="sm" asChild>
+                  <Link href="/transaction">Adicionar transação</Link>
+                </Button>
               </div>
             </CardContent>
           </Card>
