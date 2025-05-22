@@ -56,7 +56,7 @@ export default function Dashboard() {
                 </div>
 
                 <Button size="sm" asChild>
-                  <Link href="/transaction">Adicionar transação</Link>
+                  <Link href="/transactions/add">Adicionar transação</Link>
                 </Button>
               </div>
             </CardContent>
@@ -66,7 +66,9 @@ export default function Dashboard() {
           <Card>
             <CardHeader className="flex items-center justify-between border-b">
               <h4 className="text-lg font-bold">Transações</h4>
-              <Button variant="outline">Ver mais</Button>
+              <Button variant="outline" asChild>
+                <Link href="/transactions">Ver mais</Link>
+              </Button>
             </CardHeader>
             <CardContent>
               <TransactionList />

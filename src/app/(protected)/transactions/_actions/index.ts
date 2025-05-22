@@ -17,6 +17,16 @@ export const getTransactions = async () => {
   return JSON.parse(JSON.stringify(transactions));
 };
 
+export const getTransaction = async (id: string) => {
+  const response = await db.transaction.findFirst({
+    where: { id },
+    include: {
+      category: true,
+    },
+  });
+  return JSON.parse(JSON.stringify(response));
+};
+
 export const upsertTransaction = async (values: UpsertTransactionProps) => {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -34,30 +44,3 @@ export const upsertTransaction = async (values: UpsertTransactionProps) => {
     create: { ...values, userId },
   });
 };
-
-// export const getCategory = async (id: string) => {
-//   const response = await db.transactionCategory.findFirst({
-//     where: { id },
-//   });
-//   return response;
-// };
-
-// export const postStoreCategory = async (
-//   values: Prisma.TransactionCategoryCreateInput,
-// ) => {
-//   await db.transactionCategory.create({
-//     data: {
-//       ...values,
-//     },
-//   });
-// };
-
-// export const putUpdateCategory = async (
-//   id: string,
-//   values: Prisma.TransactionCategoryUpdateInput,
-// ) => {
-//   await db.transactionCategory.update({
-//     where: { id },
-//     data: { name: values.name, icon: values.icon },
-//   });
-// };
