@@ -11,8 +11,12 @@ import {
 import { FileText, Wallet } from "lucide-react";
 import Link from "next/link";
 import { TransactionList } from "../_components/TransactionsList";
+import { ChartPieTransactions } from "./_components/chart-pie-transactions";
+import { getDashboard } from "./_actions";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const dashboardValues = await getDashboard("05");
+  console.log(dashboardValues);
   return (
     <>
       <div className="mb-6 flex w-full items-end justify-between border-b pb-3">
@@ -59,6 +63,13 @@ export default function Dashboard() {
                   <Link href="/transactions/add">Adicionar transação</Link>
                 </Button>
               </div>
+            </CardContent>
+          </Card>
+        </div>
+        <div className="lg:col-span-2 xl:col-span-2 2xl:col-span-2">
+          <Card className="bg-muted">
+            <CardContent>
+              <ChartPieTransactions {...dashboardValues} />
             </CardContent>
           </Card>
         </div>

@@ -1,9 +1,7 @@
 "use server";
-
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import { db } from "@/lib/prisma";
 import { UpsertTransactionProps } from "../_types/actions.types";
+import { getSession } from "@/lib/get-session";
 
 export const getTransactions = async () => {
   const transactions = await db.transaction.findMany({
@@ -28,14 +26,8 @@ export const getTransaction = async (id: string) => {
 };
 
 export const upsertTransaction = async (values: UpsertTransactionProps) => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session) {
-    throw new Error("Sem acesso!");
-  }
-  const userId = session.user.id;
+  const { user } = await getSession();
+  const userId = user.id;
   await db.transaction.upsert({
     where: {
       id: values.id ?? new Date().toString(),

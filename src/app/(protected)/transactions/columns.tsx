@@ -13,6 +13,7 @@ import {
   Transaction,
   TransactionCategory,
 } from "../../../../_app_prisma/generated/prisma";
+import { formatCurrency } from "@/utils/format-currency";
 
 export const columns: ColumnDef<
   Transaction & { category: TransactionCategory }
@@ -57,11 +58,7 @@ export const columns: ColumnDef<
   {
     accessorKey: "amount",
     header: "Valor",
-    cell: ({ row }) =>
-      new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(Number(row.original.amount)),
+    cell: ({ row }) => formatCurrency(Number(row.original.amount)),
   },
   {
     accessorKey: "id",
