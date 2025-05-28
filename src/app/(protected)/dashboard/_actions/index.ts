@@ -60,24 +60,46 @@ export const getDashboard = async (month: string) => {
       (Number(investmentsTotal || 0) / Number(transactionsTotal)) * 100,
     ),
   };
-  const totalExpensePerCategory: TotalExpensePerCategory[] = (
-    await db.transaction.groupBy({
-      by: ["categoryId"],
-      where: {
-        ...where,
-        type: TransactionType.EXPENSE,
-      },
-      _sum: {
-        amount: true,
-      },
-    })
-  ).map((transaction) => ({
-    category: transaction.categoryId,
-    totalAmount: Number(transaction._sum?.amount),
-    percentageOfTotal: Math.round(
-      (Number(transaction._sum?.amount) / Number(expensesTotal)) * 100,
-    ),
-  }));
+
+  const groupedTransactionsByCategoryId = await db.transaction.groupBy({
+    by: ["categoryId"],
+    where: {
+      ...where,
+      type: TransactionType.EXPENSE,
+    },
+    _sum: {
+      amount: true,
+    },
+  });
+  const categoryIds = groupedTransactionsByCategoryId.map((t) => t.categoryId);
+  const categories = await db.transactionCategory.findMany({
+    where: {
+      id: { in: categoryIds },
+    },
+    select: {
+      id: true,
+      name: true,
+      icon: true,
+    },
+  });
+
+  const totalExpensePerCategory: TotalExpensePerCategory[] =
+    groupedTransactionsByCategoryId.map((transaction) => {
+      const category = categories.find((c) => c.id === transaction.categoryId);
+
+      const totalAmount = Number(transaction._sum?.amount);
+
+      return {
+        categoryId: transaction.categoryId,
+        categoryName: category?.name || "Sem categoria",
+        categoryIcon: category?.icon || "",
+        totalAmount,
+        percentageOfTotal: Math.round(
+          (totalAmount / Number(expensesTotal)) * 100,
+        ),
+      };
+    });
+
   const lastTransactions = await db.transaction.findMany({
     where,
     orderBy: { date: "desc" },

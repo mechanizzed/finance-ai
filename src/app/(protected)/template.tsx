@@ -12,7 +12,7 @@ export default function DashboardTemplate({
       <AppSidebar />
       <main className="w-full">
         <Header />
-        <div className="mx-auto max-w-11/12">{children}</div>
+        <div className="mx-auto mb-8 max-w-11/12">{children}</div>
       </main>
     </SidebarProvider>
   );

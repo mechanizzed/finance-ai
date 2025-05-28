@@ -1,4 +1,5 @@
 "use client";
+import { LucideProps } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import dynamic from "next/dynamic";
 import { FC, memo } from "react";
@@ -17,9 +18,8 @@ for (const name of icons) {
   icons_components[name] = NewIcon;
 }
 
-type DynamicIconProps = {
+type DynamicIconProps = LucideProps & {
   name: IconName | unknown;
-  className?: string;
 };
 const DynamicIcon = memo(({ name, ...props }: DynamicIconProps) => {
   const Icon = icons_components[name as IconName];

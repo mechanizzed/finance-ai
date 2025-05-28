@@ -6,7 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { PencilIcon, TrashIcon } from "lucide-react";
 import Link from "next/link";
 
-import { TRANSACTION_PAYMENT_METHOD_LABELS } from "./_constants";
+import { TRANSACTION_PAYMENT_METHOD_LABELS } from "../_constants";
 import { BadgeTypes } from "./_components/badge";
 import DynamicIcon from "@/utils/icon-generate";
 import {

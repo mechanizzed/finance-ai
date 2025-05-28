@@ -33,7 +33,7 @@ import { InputMoney } from "@/components/ui/input-money";
 import {
   TRANSACTION_PAYMENT_METHOD_OPTIONS,
   TRANSACTION_TYPE_OPTIONS,
-} from "../_constants";
+} from "../../_constants";
 import { DatePicker } from "@/components/ui/date-picker";
 import { upsertTransaction } from "../_actions";
 
