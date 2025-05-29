@@ -20,14 +20,11 @@ import { isMatch } from "date-fns";
 import { getCurrentMonth } from "@/utils/get-current-month";
 
 interface DashboardProps {
-  searchParams: {
-    month: string;
-  };
+  searchParams: Promise<{ month: string }>;
 }
 
-export default async function Dashboard({
-  searchParams: { month },
-}: DashboardProps) {
+export default async function Dashboard({ searchParams }: DashboardProps) {
+  const { month } = await searchParams;
   const monthIsInvalid = !month || !isMatch(month, "MM");
   if (monthIsInvalid) {
     redirect(`?month=${getCurrentMonth()}`);
