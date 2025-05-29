@@ -1,9 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-
 import {
-  FileText,
   PiggyBank,
   TrendingDownIcon,
   TrendingUpIcon,
@@ -18,6 +15,8 @@ import { LastTransactions } from "./_components/last-transactions";
 import { DateSelect } from "./_components/date-select";
 import { isMatch } from "date-fns";
 import { getCurrentMonth } from "@/utils/get-current-month";
+import { MONTH_OPTIONS } from "../_constants";
+import { ButtonReportAi } from "./_components/button-report-ai";
 
 interface DashboardProps {
   searchParams: Promise<{ month: string }>;
@@ -31,6 +30,8 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
   }
 
   const dashboardValues = await getDashboard(month);
+  const isTransactionsToShow: boolean = dashboardValues.lastTransactions.length;
+  const getMonthName = MONTH_OPTIONS.find((m) => m.value === month)?.label;
 
   return (
     <>
@@ -39,9 +40,7 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
 
         <div className="flex gap-x-2 gap-y-1">
           <div className="flex items-center gap-1">
-            <Button variant="secondary" className="border">
-              Gerar relatório IA <FileText size={15} />
-            </Button>
+            <ButtonReportAi month={month} />
           </div>
 
           <DateSelect />
@@ -76,19 +75,30 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
             />
           </div>
 
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2">
-            <ChartPieTransactions {...dashboardValues} />
+          {isTransactionsToShow ? (
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2">
+              <ChartPieTransactions {...dashboardValues} />
 
-            <ExpensesPerCategory
-              expensesPerCategory={dashboardValues.totalExpensePerCategory}
+              <ExpensesPerCategory
+                expensesPerCategory={dashboardValues.totalExpensePerCategory}
+              />
+            </div>
+          ) : (
+            <p className="text-center text-sm font-bold">
+              Nenhuma transação encontrada para o mês de{" "}
+              <span className="text-primary">{getMonthName}</span>
+            </p>
+          )}
+        </div>
+        {isTransactionsToShow ? (
+          <div className="col-span-1">
+            <LastTransactions
+              lastTransactions={dashboardValues.lastTransactions}
             />
           </div>
-        </div>
-        <div className="col-span-1">
-          <LastTransactions
-            lastTransactions={dashboardValues.lastTransactions}
-          />
-        </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

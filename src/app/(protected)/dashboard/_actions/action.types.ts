@@ -7,10 +7,14 @@ export type TransactionPercentagePerType = {
   [key in TransactionType]: number;
 };
 
-export interface TotalExpensePerCategory {
+export type TotalExpensePerCategory = {
   categoryId: string;
   categoryName: string;
   categoryIcon: string;
   totalAmount: number;
   percentageOfTotal: number;
-}
+};
+
+export type GenerateAiReportProps = {
+  month: string;
+};
