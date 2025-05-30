@@ -1,3 +1,6 @@
+"use server";
+
+import { connection } from "next/server";
 import OpenAI from "openai";
 import { db } from "@/lib/prisma";
 import { TransactionType } from "../../../../../_app_prisma/generated/prisma/client";
@@ -121,6 +124,7 @@ export const getDashboard = async (month: string) => {
 export const generateAiReport = async ({
   month,
 }: GenerateAiReportProps): Promise<string | null> => {
+  await connection();
   if (!process.env.OPENAI_API_KEY) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     // return DUMMY_REPORT;
