@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import {
+  ChartArea,
   PiggyBank,
   TrendingDownIcon,
   TrendingUpIcon,
@@ -36,7 +37,9 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
   return (
     <>
       <div className="mb-6 flex w-full items-end justify-between border-b pb-3">
-        <h1 className="text-primary text-2xl font-bold">Dashboard</h1>
+        <h1 className="text-primary flex items-center gap-1 text-2xl font-bold">
+          <ChartArea /> Dashboard
+        </h1>
 
         <div className="flex gap-x-2 gap-y-1">
           <div className="flex items-center gap-1">
@@ -47,59 +50,67 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 2xl:grid-cols-3">
-        <div className="col-span-2 space-y-4">
-          <SummaryCards
-            icon={<Wallet size={16} className="text-primary" />}
-            sizeTextAmount="large"
-            title="Saldo"
-            amount={dashboardValues.balance}
-            isButtonAddTransaction
-          />
-
-          <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3">
-            <SummaryCards
-              icon={<TrendingUpIcon size={16} className="text-green-500" />}
-              title="Receita"
-              amount={dashboardValues.depositsTotal}
-            />
-            <SummaryCards
-              icon={<TrendingDownIcon size={16} className="text-red-500" />}
-              title="Despesas"
-              amount={dashboardValues.expensesTotal}
-            />
-            <SummaryCards
-              icon={<PiggyBank size={16} className="text-muted-foreground" />}
-              title="Investido"
-              amount={dashboardValues.investmentsTotal}
-            />
+      {isTransactionsToShow ? (
+        <>
+          <div className="mb-2 w-full">
+            <p className="text-muted-foreground">
+              Listando relatórios referentes ao mês de{" "}
+              <span className="text-primary"> {getMonthName}</span>.
+            </p>
           </div>
 
-          {isTransactionsToShow ? (
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2">
-              <ChartPieTransactions {...dashboardValues} />
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-3 2xl:grid-cols-3">
+            <div className="col-span-2 space-y-4">
+              <SummaryCards
+                icon={<Wallet size={16} className="text-primary" />}
+                sizeTextAmount="large"
+                title="Saldo"
+                amount={dashboardValues.balance}
+                isButtonAddTransaction
+              />
 
-              <ExpensesPerCategory
-                expensesPerCategory={dashboardValues.totalExpensePerCategory}
+              <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3">
+                <SummaryCards
+                  icon={<TrendingUpIcon size={16} className="text-green-500" />}
+                  title="Receita"
+                  amount={dashboardValues.depositsTotal}
+                />
+                <SummaryCards
+                  icon={<TrendingDownIcon size={16} className="text-red-500" />}
+                  title="Despesas"
+                  amount={dashboardValues.expensesTotal}
+                />
+                <SummaryCards
+                  icon={
+                    <PiggyBank size={16} className="text-muted-foreground" />
+                  }
+                  title="Investido"
+                  amount={dashboardValues.investmentsTotal}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2">
+                <ChartPieTransactions {...dashboardValues} />
+
+                <ExpensesPerCategory
+                  expensesPerCategory={dashboardValues.totalExpensePerCategory}
+                />
+              </div>
+            </div>
+
+            <div className="col-span-1">
+              <LastTransactions
+                lastTransactions={dashboardValues.lastTransactions}
               />
             </div>
-          ) : (
-            <p className="text-center text-sm font-bold">
-              Nenhuma transação encontrada para o mês de{" "}
-              <span className="text-primary">{getMonthName}</span>
-            </p>
-          )}
-        </div>
-        {isTransactionsToShow ? (
-          <div className="col-span-1">
-            <LastTransactions
-              lastTransactions={dashboardValues.lastTransactions}
-            />
           </div>
-        ) : (
-          ""
-        )}
-      </div>
+        </>
+      ) : (
+        <p className="text-center text-sm font-bold">
+          Nenhuma transação encontrada para o mês de{" "}
+          <span className="text-primary">{getMonthName}</span>
+        </p>
+      )}
     </>
   );
 }

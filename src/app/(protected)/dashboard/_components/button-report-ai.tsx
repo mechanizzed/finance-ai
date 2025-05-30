@@ -23,18 +23,6 @@ export const ButtonReportAi = ({ month }: ButtonReportAiProps) => {
   const [report, setReport] = useState<string | null>(null);
   const [reportIsLoading, setReportIsLoading] = useState(false);
 
-  // const handleGenerateReport = async () => {
-  //   try {
-  //     setReportIsLoading(true);
-  //     const aiReport = await generateAiReport({ month });
-  //     setReport(aiReport);
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     setReportIsLoading(false);
-  //   }
-  // };
-
   const handleGenerateReport = useCallback(async () => {
     try {
       setReportIsLoading(true);
@@ -42,7 +30,7 @@ export const ButtonReportAi = ({ month }: ButtonReportAiProps) => {
       setReport(getReportAi);
       setReportIsLoading(false);
     } catch (error) {
-      console.error("erorrrrr >", error);
+      console.error("handleGenerateReport error:", error);
       setReportIsLoading(false);
     }
   }, [month]);
@@ -56,7 +44,7 @@ export const ButtonReportAi = ({ month }: ButtonReportAiProps) => {
       }}
     >
       <DialogTrigger asChild>
-        <Button variant="secondary" className="border">
+        <Button variant="secondary" className="cursor-pointer border">
           Relatório IA
           <BotIcon />
         </Button>
@@ -79,7 +67,11 @@ export const ButtonReportAi = ({ month }: ButtonReportAiProps) => {
           <DialogClose asChild>
             <Button variant="ghost">Cancelar</Button>
           </DialogClose>
-          <Button onClick={handleGenerateReport} disabled={reportIsLoading}>
+          <Button
+            onClick={handleGenerateReport}
+            disabled={reportIsLoading}
+            className="cursor-pointer"
+          >
             {reportIsLoading && <Loader2Icon className="animate-spin" />}
             Gerar relatório
           </Button>
