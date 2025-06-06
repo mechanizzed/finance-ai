@@ -36,8 +36,8 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
 
   return (
     <>
-      <div className="mb-6 flex w-full items-end justify-between border-b pb-3">
-        <h1 className="text-primary flex items-center gap-1 text-2xl font-bold">
+      <div className="mb-6 flex w-full flex-col justify-between gap-y-1.5 border-b pb-3 lg:flex-row xl:flex-row 2xl:flex-row">
+        <h1 className="text-primary flex items-center gap-1 text-lg font-bold xl:text-2xl 2xl:text-2xl">
           <ChartArea /> Dashboard
         </h1>
 
