@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FinanceAI
+
+FinanceAI is a modern personal finance management application built with Next.js, Prisma, and React. It helps users track their income, expenses, and investments, categorize transactions, and gain insights into their financial health—including AI-powered reports.
+
+## Features
+
+- **Authentication**: Secure email and password login and registration.
+- **Dashboard**: Visual summary of your finances, including:
+  - Balance, income, expenses, and investments summary cards
+  - Pie chart of transaction types
+  - Expenses breakdown by category
+  - List of recent transactions
+  - AI-powered financial report with insights and tips (using OpenAI)
+- **Transactions**: Add, edit, and delete financial transactions with fields for name, amount, type (deposit, expense, investment), category, payment method, and date.
+- **Categories**: Create, edit, and delete custom categories with icons for better organization.
+- **Responsive UI**: Clean, modern, and mobile-friendly interface.
+
+## Technologies Used
+
+- **Next.js** (App Router)
+- **React** & **TypeScript**
+- **Prisma ORM** (PostgreSQL)
+- **Tailwind CSS**
+- **React Hook Form** & **Zod** (form validation)
+- **OpenAI API** (AI-powered reports)
+- **Radix UI** (accessible UI components)
+- **Recharts** (data visualization)
+- **Better Auth** (authentication)
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies:**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Set up your environment:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   - Copy `.env.example` to `.env` and fill in your database and OpenAI API keys.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. **Run database migrations:**
 
-## Learn More
+   ```bash
+   npx prisma migrate deploy
+   # or
+   npx prisma migrate dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Start the development server:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
-## Deploy on Vercel
+## Main Sections
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Sign In / Sign Up**: Authenticate with email and password.
+- **Dashboard**: Overview of your financial status, charts, and AI insights.
+- **Transactions**: View, add, edit, and delete your financial transactions.
+- **Categories**: Manage transaction categories and assign icons.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Data Model
+
+- **User**: Manages authentication and user profile.
+- **Transaction**: Stores financial records (amount, type, category, payment method, date, etc.).
+- **TransactionCategory**: Customizable categories for transactions.
+
+## AI-Powered Reports
+
+On the dashboard, you can generate a financial report powered by OpenAI. The AI analyzes your transactions for the selected month and provides personalized insights and tips to help you improve your financial health.
+
+## License
+
+This project is for educational and personal use. Feel free to fork and adapt it for your needs.
