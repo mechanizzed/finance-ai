@@ -47,7 +47,7 @@ export const LastTransactions = ({
               </div>
             </div>
             <p className={`text-sm font-bold ${getAmountColor(transaction)}`}>
-              {getAmountPrefix(transaction)}
+              {getAmountPrefix(transaction.type)}
               {formatCurrency(Number(transaction.amount))}
             </p>
           </div>
